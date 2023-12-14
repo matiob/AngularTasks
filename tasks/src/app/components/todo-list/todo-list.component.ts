@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Task } from 'src/app/models/Task';
+import { Task, TaskType } from 'src/app/models/Task';
 
 @Component({
   selector: 'app-todo-list',
@@ -7,14 +7,22 @@ import { Task } from 'src/app/models/Task';
   styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent {
-  task!: string;
+  task: TaskType = {
+    title: '',
+    description: ''
+  }
   toDoList: Task[] = [];
   taskType!: string;
 
-  addTask() {
-    const toDo = new Task(this.task);
+  addTask(): void {
+    if (!this.task.title || !this.task.description) {
+      alert('El título y la descripción son obligatorios');
+      return;
+    }
+    const toDo = new Task(this.task.title, this.task.description); 
     this.toDoList.unshift(toDo);
-    this.task = '';
+    this.task.title = '';
+    this.task.description = '';
   }
 
   setTaskType(taskType: string = 'all'): void {

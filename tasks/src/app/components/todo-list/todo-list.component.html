@@ -7,13 +7,18 @@
             <h4>Add tasks</h4>
           </div>
         </div>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Insert a task"
-          [(ngModel)]="task"
-          (keyup.enter)="addTask()"
-        />
+            <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="Title"
+            [(ngModel)]="task.title"
+          />
+          <textarea
+            type="textarea"
+            class="form-control"
+            placeholder="Description"
+            [(ngModel)]="task.description"
+          ></textarea>
         <div class="text-center mt-2">
           <button class="btn btn-secondary" (click)="addTask()">Add</button>
         </div>
@@ -66,7 +71,8 @@
                         : ''
                     }}"
                   >
-                    <p class="ms-1 fw-bold">{{ item.getTask() }}</p>
+                    <p class="ms-1 fw-bold text-primary">{{ item.getTask().title }}</p>
+                    <p >{{ item.getTask().description }}</p>
                     <p class="fw-light">
                       {{ item.getDate() | date : "dd/MM/yyyy, hh:mm aa" }}
                     </p>

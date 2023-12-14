@@ -1,18 +1,26 @@
+export type TaskType = {
+  title: string,
+  description: string
+}
 export class Task {
     
-  private task: string;
+  private task: TaskType = {
+    title: '',
+    description: ''
+  }
   private isDone: boolean;
   private isDeleted: boolean;
   private date: Date;
 
-  constructor(value: string) {
-    this.task = value;
+  constructor(title: string, description: string) {
+    this.task.title = title;
+    this.task.description = description;
     this.isDone = false;
     this.isDeleted = false;
     this.date = new Date();
   }
 
-  getTask(): string {
+  getTask(): TaskType {
     return this.task;
   }
 
@@ -28,7 +36,7 @@ export class Task {
     return this.isDone;
   }
 
-  setTask(task: string): void {
+  setTask(task: TaskType): void {
     this.task = task;
   }
 
