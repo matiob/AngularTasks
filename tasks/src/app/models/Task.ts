@@ -10,6 +10,7 @@ export class Task {
   }
   private isDone: boolean;
   private isDeleted: boolean;
+  private isEdited: boolean;
   private date: Date;
 
   constructor(title: string, description: string) {
@@ -17,6 +18,7 @@ export class Task {
     this.task.description = description;
     this.isDone = false;
     this.isDeleted = false;
+    this.isEdited = false;
     this.date = new Date();
   }
 
@@ -36,6 +38,10 @@ export class Task {
     return this.isDone;
   }
 
+  getIsEdited(): boolean {
+    return this.isEdited;
+  }
+
   setTask(task: TaskType): void {
     this.task = task;
   }
@@ -52,10 +58,17 @@ export class Task {
     this.isDone = isDone;
   }
 
-  toggleDone() {
+  setIsEdited(isEdited: boolean): void {
+    this.isEdited = isEdited;
+  }
+
+  toggleDone(): void {
     this.isDone = !this.isDone;
   }
-  toggleDelete() {
+  toggleDelete(): void {
     this.isDeleted = !this.isDeleted;
+  }
+  toggleEdited(): void {
+    this.isEdited = !this.isEdited;
   }
 }

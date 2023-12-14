@@ -1,6 +1,20 @@
 import { Component } from '@angular/core';
 import { Task, TaskType } from 'src/app/models/Task';
 
+function getStorage() {
+  const todoListString = localStorage.getItem('todoList');
+  if (todoListString) {
+    const todoList = JSON.parse(todoListString);
+    return todoList;
+  }
+  return [];
+}
+
+function setStorage(todoList: Task[] = []): void {
+  const todoListString: string = JSON.stringify(todoList);
+  localStorage.setItem('todoList', todoListString);  
+}
+
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -11,7 +25,7 @@ export class TodoListComponent {
     title: '',
     description: ''
   }
-  toDoList: Task[] = [];
+  toDoList: Task[] = [] // getStorage();
   taskType!: string;
 
   addTask(): void {
@@ -21,8 +35,13 @@ export class TodoListComponent {
     }
     const toDo = new Task(this.task.title, this.task.description); 
     this.toDoList.unshift(toDo);
+    // setStorage(this.toDoList);
     this.task.title = '';
     this.task.description = '';
+  }
+
+  edit(): void {
+    
   }
 
   setTaskType(taskType: string = 'all'): void {

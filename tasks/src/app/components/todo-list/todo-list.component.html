@@ -25,31 +25,35 @@
       </div>
     </div>
     <div class="col-7 text-center">
-      <h3 class="pb-2">List:</h3>
+      <h3 class="pb-2">Tasks</h3>
       <article>
         <div class="row mb-2">
           <div class="col btn-group btn-group-toggle" data-toggle="buttons">
             <button
               class="btn btn-outline-secondary btm-sm"
               (click)="setTaskType()"
+              [ngClass]="{'active': taskType === 'all'}"
             >
               All
             </button>
             <button
               class="btn btn-outline-secondary btm-sm"
               (click)="setTaskType('pending')"
+              [ngClass]="{'active': taskType === 'pending'}"
             >
               Pending
             </button>
             <button
               class="btn btn-outline-secondary btm-sm"
               (click)="setTaskType('done')"
+              [ngClass]="{'active': taskType === 'finished'}"
             >
               Finished
             </button>
             <button
               class="btn btn-outline-secondary btm-sm"
               (click)="setTaskType('deleted')"
+              [ngClass]="{'active': taskType === 'deleted'}"
             >
               Deleted
             </button>
@@ -64,7 +68,7 @@
               >
                 <div class="row">
                   <div
-                    class="col-8"
+                    class="col-8 h-auto"
                     ngClass="{{
                       item.getIsDone()
                         ? 'text-decoration-line-through text-secondary'
@@ -72,7 +76,16 @@
                     }}"
                   >
                     <p class="ms-1 fw-bold text-primary">{{ item.getTask().title }}</p>
-                    <p >{{ item.getTask().description }}</p>
+                    <p  
+                      class="w-100 box-sizing-border overflow-wrap-break-word"
+                      [attr.contenteditable]="item.getIsEdited()"
+                      ngClass="{{
+                        item.getIsEdited()
+                          ? 'bg-light border'
+                          : ''
+                      }}"
+                    >
+                    {{ item.getTask().description }}</p>
                     <p class="fw-light">
                       {{ item.getDate() | date : "dd/MM/yyyy, hh:mm aa" }}
                     </p>
@@ -100,6 +113,25 @@
                         />
                         <path
                           d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"
+                        />
+                      </svg>
+                    </button>
+                    <button 
+                      class="btn btn-sm pb-2 mx-1 btn-outline-warning"
+                      (click)="item.toggleEdited()"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-pencil"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M11.293 0.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9-3 1 1-3z" />
+                        <path
+                          fill-rule="evenodd"
+                          d="M0 11l4-1 7.977-8L11 3l-7 7-1 4zm4.464-1.207L1 14v1h1l8.793-8.793-1.793-1.793L4.464 9.793z"
                         />
                       </svg>
                     </button>
