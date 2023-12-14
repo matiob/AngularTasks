@@ -21,8 +21,9 @@ Welcome to the Angular TODO List App project. This application is a web-based TO
 >[!TIP]
 >To run the project locally, follow these steps:
 >1. Clone this repository: `git clone https://github.com/matiob/AngularTasks.git`
->2. Run `ng serve` for a dev server.
->3. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+>2. Run `npm i` for download the dependencies of the proyect.
+>3. Run `ng serve` for a dev server.
+>4. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 We hope you enjoy exploring the project!
 
