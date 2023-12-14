@@ -1,0 +1,19 @@
+<div class="bar bg-light-subtle">
+  <section class="row">
+    <div class="col text-center pt-2">
+      <h3>Projects</h3>
+    </div>
+  </section>
+  <section class="row p-2">
+    <div class="col">
+      <ul class="list-group">
+        <button
+          class="list-group-item list-group-item-action list-group-item-secondary"
+          *ngFor="let project of projectsList; let i = index"
+        >
+          {{i}} - {{ project }}
+        </button>
+      </ul>
+    </div>
+  </section>
+</div>
